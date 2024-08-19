@@ -7,7 +7,7 @@ Sends a POST request with the URLs to the backend.
 Displays fetched metadata or an error message.
 Includes basic error handling for user inputs and server responses.
 
-## Desing 
+## Design 
 
 1. State Management
 useState is used to manage form inputs (urls), the fetched metadata, and any potential error messages.
