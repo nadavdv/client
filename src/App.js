@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [urls, setUrls] = useState([]); // Stores the URLs input by the user
-  const [metadata, setMetadata] = useState([]); // Stores the metadata fetched from the backend
-  const [error, setError] = useState(""); // Error state
+  const [urls, setUrls] = useState([]); // URLs
+  const [metadata, setMetadata] = useState([]); // fetched metadata
+  const [error, setError] = useState(""); // error 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate if there are at least 3 URLs
+    // check if there are at least 3 URLs
     if (urls.length < 3) {
       setError("Please provide at least 3 URLs.");
       return;
@@ -21,11 +21,11 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ urls }), // Send the URLs as an array in the body
+      body: JSON.stringify({ urls }), // send  URLs the body
     })
       .then((response) => response.json())
       .then((data) => {
-        setMetadata(data); // Set the fetched metadata in state
+        setMetadata(data);
         console.log(data);
         setError(""); // Clear any error messages
       })
@@ -35,13 +35,14 @@ function App() {
       });
   };
 
-  // Handle input change
+  // handle input change
   const handleInputChange = (e, index) => {
     const newUrls = [...urls];
     newUrls[index] = e.target.value;
     setUrls(newUrls);
   };
 
+  // handle removing URL  
   const removeURL = (index) => {
     let newURLs = [...urls.slice(0, index), ...urls.slice(index + 1)];
     setUrls(newURLs);
@@ -68,7 +69,7 @@ function App() {
         <button
           type="button"
           className="form-btn"
-          onClick={() => setUrls([...urls, ""])} // Add new input field
+          onClick={() => setUrls([...urls, ""])} // add new input field
         >
           Add URL
         </button>
@@ -76,6 +77,8 @@ function App() {
           Fetch Metadata
         </button>
       </form>
+
+      {/* METADATA DISPLAY */}
 
       {error ? (
         <p style={{ color: "red" }}>{error}</p>
