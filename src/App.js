@@ -16,7 +16,7 @@ function App() {
     }
 
     // Send POST request to backend
-    fetch("http://localhost:5000/fetch-metadata", {
+    fetch("https://metadata-fetcher-server.onrender.com/fetch-metadata", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
