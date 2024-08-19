@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 
+const serverRoute = "https://metadata-fetcher-server.onrender.com/fetch-metadata"
+
 function App() {
   const [urls, setUrls] = useState([]); // URLs
   const [metadata, setMetadata] = useState([]); // fetched metadata
@@ -16,7 +18,7 @@ function App() {
     }
 
     // Send POST request to backend
-    fetch("https://metadata-fetcher-server.onrender.com/fetch-metadata", {
+    fetch(serverRoute, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
